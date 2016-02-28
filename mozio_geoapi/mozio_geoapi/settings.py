@@ -78,9 +78,13 @@ WSGI_APPLICATION = 'mozio_geoapi.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+         'ENGINE': 'django.contrib.gis.db.backends.postgis',
+         'NAME': 'mozio_geoapi',
+         'USER': 'mozio_geoapi',
+         'PASSWORD': 'mozio_geoapi',
+         'HOST': 'localhost',
+         'PORT': '5432',
+    },
 }
 
 

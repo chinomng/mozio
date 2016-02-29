@@ -1,0 +1,15 @@
+option_settings:
+  "aws:elasticbeanstalk:application:environment":
+    DJANGO_SETTINGS_MODULE: "mozio_geoapi.settings"
+    PYTHONPATH: "/opt/python/current/app:$PYTHONPATH"
+  "aws:elasticbeanstalk:container:python":
+    WSGIPath: "mozio_geoapi/wsgi.py"
+  "aws:elasticbeanstalk:container:python:staticfiles":
+    "/static/": "www/staticfiles/"
+
+container_commands:
+  01_migrattion:
+    command: "source /opt/python/run/venv/bin/activate python manage.py migrate"
+
+  02_collectstatic:
+    command: "source /opt/python/run/venv/bin/activate python collectstatic --no-input"

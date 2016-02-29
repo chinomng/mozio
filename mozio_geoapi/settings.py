@@ -75,20 +75,16 @@ TEMPLATES = [
 WSGI_APPLICATION = 'mozio_geoapi.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
 DATABASES = {
     'default': {
-         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-         'NAME': 'mozio_geoapi',
-         'USER': 'mozio_geoapi',
-         'PASSWORD': 'mozio_geoapi',
-         'HOST': 'localhost',
-         'PORT': '5432',
-    },
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': os.environ.get('RDS_DB_NAME', 'mozio_geoapi'),
+        'USER': os.environ.get('RDS_USERNAME', 'mozio_geoapi'),
+        'PASSWORD': os.environ.get('RDS_PASSWORD', 'mozio_geoapi'),
+        'HOST': os.environ.get('RDS_HOSTNAME', 'localhost'),
+        'PORT': os.environ.get('RDS_PORT', '5432'),
+    }
 }
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
